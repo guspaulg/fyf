@@ -1,0 +1,55 @@
+
+.logo{
+    float: left;
+    padding-top: 14px;
+    padding-left: 30px;
+}
+
+.user {
+    max-width: 350px;
+    margin: 0 auto;
+    text-align: center;
+    margin-top: 100px;
+}
+
+.bienvenida {
+    font-size: 20px;
+    text-align: center;
+}
+
+.logo2{
+        margin: 0 auto;
+    text-align: center;
+}
+.fila_1_n{
+    color: #3d3d4a;  
+}
+
+.fila_2_n{
+    color: #3d3d4a;
+}
+
+.fila_1_v{
+    color: #11bf2c;
+    font-weight: bold;
+}
+
+.fila_2_v{
+    color: #11bf2c;
+    font-weight: bold;  
+}
+
+.fila_1_r{
+    color: #ff0101;  
+}
+
+.fila_2_r{
+    color: #ff0101;
+}
+.fila_1_c{
+    color: #d429b4;  
+}
+
+.fila_2_c{
+    color: #d429b4;
+}

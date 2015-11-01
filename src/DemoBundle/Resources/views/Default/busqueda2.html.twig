@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+
+<title>Fight and Fitness</title>
+
+<Link  href = "{{asset('css/busqueda.css')}}" rel = "stylesheet" type = "text/css"  />
+
+<script type="text/javascript" src="{{ asset('js/new.js') }}" ></script> 
+
+
+</head>
+
+<body>
+
+
+
+
+  <div id="footer_arriba">
+  	<img src="{{asset('imagenes/logo3.png')}}" />
+  </div>
+
+  
+  
+  <div id="cuadro_cont">
+
+  		<div id="cuadro1">
+  			
+  			<div class="boton">
+                <a href="{{ path('ff_demo_homepage', { 'slug': '' } )}}">
+                  Volver Principal
+                </a>
+            </div>
+
+  		</div>
+    
+	    <div id="cuadro2">
+
+          {{ form_start(form) }}
+                {{ form_errors(form) }}
+             
+                <div class="titulo_form"> BUSCAR ALUMNOS EN FIGHT FITNESS</div>
+                         
+          {{ form_end(form) }}
+
+          <table align="center">
+
+        <tr>
+          <td class="fila1"> APELLIDOS</td>
+          <td class="fila1"> APELLIDOS</td>
+          <td class="fila2"> NOMBRES</td>
+          <td class="fila3"> </td>
+          <td class="fila3"> </td>
+        </tr>
+
+        {% for result in alumno %}
+        <tr>
+          <td class="fila_1">{{ result.apellidop }} </td>
+        
+          <td class="fila_1">{{ result.apellidom}} </td>
+
+          <td class="fila_2">{{result.nombre}}</td>
+
+          
+          <td class="fila_3">
+            <a href="{{ url('alumno', { 'id': result.id }) }}">
+              <img src="{{asset('imagenes/icon-lupa.png')}}" width="20" height="20"/> 
+            </a>  
+          </td>
+        </tr>
+
+        {% endfor%}
+
+
+
+
+      </table>
+
+
+			
+		</div>
+	</div>
+  
+
+</body>
+</html>

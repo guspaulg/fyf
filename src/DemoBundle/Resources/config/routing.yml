@@ -1,0 +1,69 @@
+ff_demo_homepage:
+    path:       /generalinicio
+    defaults: { _controller: FfDemoBundle:Default:mostrar }
+
+
+Vencer:
+    path:       /generalvencer/
+    defaults: { _controller: FfDemoBundle:Default:mostrar_vencer }
+
+Formulario:
+    path:       /generalformulario/
+    defaults:  { _controller: FfDemoBundle:Default:mostrar_formulario }
+
+
+Cuentas:
+    path:       /generalcuentas/
+    defaults:  { _controller: FfDemoBundle:Default:mostrarcuentas }
+
+Salida:
+    path:       /generalsalida/
+    defaults:  { _controller: FfDemoBundle:Default:mostrar_IngresarSalida }
+
+
+
+
+alumno:
+    path:      /generalalumno/{id}
+    defaults:  { _controller: FfDemoBundle:DetalleAlumno:mostrar_alumno}
+
+
+alumno2:
+    path:      /generalalumno2/{id}
+    defaults:  { _controller: FfDemoBundle:DetalleAlumno:mostrar_alumno_asistencia}
+
+rematricula:
+    path:      /generalrematricula/{id}
+    defaults:  { _controller: FfDemoBundle:DetalleAlumno:mostrar_formulario_rematricula}
+
+editar:
+    path:      /admineditar/{id}
+    defaults:  { _controller: FfDemoBundle:DetalleAlumno:editar}
+
+
+
+
+
+
+
+estadistica:
+    path:      /generalestadistica/
+    defaults:  { _controller: FfDemoBundle:Estadistica:mostrar_formulario}
+
+
+
+
+
+
+
+
+
+Busqueda:
+    path:      /generalbusqueda/
+    defaults:  { _controller: FfDemoBundle:Busqueda:mostrar_formulario}
+
+logout:
+    path:   /logout
+
+
+

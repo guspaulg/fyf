@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+
+<title>Fight and Fitness</title>  
+
+	<Link  href = "{{asset('css/detalle_alumno.css')}}" rel = "stylesheet" type = "text/css"  />
+
+	title>Fight and Fitness</title>
+
+
+ 	<link href = "{{asset('css/bootstrap.css')}}" rel="stylesheet" media="screen">
+	<link href = "{{asset('css/lomio.css')}}" rel="stylesheet" type="text/css" >
+	<link href = "{{asset('css/dashboard.css')}}" rel="stylesheet" type="text/css" >
+
+	<script src = "{{asset('http://code.jquery.com/jquery.js')}}"></script>
+	<script src = "{{asset('js/bootstrap.min.js')}}"></script>
+
+		<script type="text/javascript">
+
+	    function mostrar(){
+	        document.getElementById('rematricula').style.display='block';
+	    }
+	    function mostrar2(){
+	        document.getElementById('rematricula').style.display='none';
+	    }
+
+	</script>
+
+</head>
+
+<body>
+
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+      	<a href="http://www.incuba.pe"><img src="{{asset('imagenes/logo4.png')}}" class="logo"></a>
+        <div class="navbar-header">
+          <a class="navbar-brand" href="{{ path('logout', { 'slug': '' } )}}" >Cerrar Sesión</a>
+        </div>
+        
+      </div>
+    </nav>
+
+    <div class="container-fluid">
+      	<div class="row">
+	        <div class="col-sm-3 col-md-2 sidebar">
+		          <ul class="nav nav-sidebar">
+			            <li><a href="{{ path('ff_demo_homepage', { 'slug': '' } )}}">Inicio <span class="sr-only">(current)</span></a></li>
+			            
+			            <li><a href= "{{ path('Formulario', { 'slug': '' } )}}"  >Matricular</a></li>
+			            <li><a href="{{ path('Vencer', { 'slug': '' } )}}">Vencimientos</a></li>
+			            <li><a href="{{ path('estadistica', { 'slug': '' } )}}">Reportes</a></li>
+		          </ul>
+	        
+	        </div>
+
+	        <div class="col-md-5 col-md-offset-2">
+
+	        	<div id="cuadro2">
+
+	    		<a title="ASISTENCIA" href="{{ path('asistencia', { 'id': id  } )}}" class="aimagen">	
+	    			<img src="{{asset('imagenes/asistencia.png')}}"/>
+	    		</a>
+				
+				<a title="EDITAR" href="{{ path('editar', { 'id': id  } )}}" class="aimagen">	
+	    			<img src="{{asset('imagenes/actualizar.png')}}"/>
+	    		</a>
+
+	    		<a title="MATRICULAR" href="#" class="aimagen" onclick="mostrar()">	
+	    			<img src="{{asset('imagenes/rematricula.png')}}"/>
+	    		</a>
+		    	
+		    	<div class="espacio">
+		    		{% if alumno.path =='general.png' %}
+			    		<div class="col-md-5">
+			    			<img class="foto" src="{{asset('fotos/'~ alumno.path~'')}}"/>	
+			    		</div>
+			    	{% else %}
+			    		<div class="col-md-5">
+			    			<img class="foto" src="{{asset('fotos/'~ alumno.id~'.'~ alumno.path~'')}}"/>	
+			    		</div>
+			    	{% endif %}
+
+		    		<div class="col-md-7">
+			    		<div class="nombre">
+			    		
+							<br>
+
+							{% if date(alumnop[0].fechafinal) > date() %}
+									
+									{% if date(alumnop[0].fechafinal) < date('+10days')  %}
+
+									<div class="fila_1_r"> {{alumno.apellidop}} {{alumno.apellidom}} {{alumno.nombre}} </div> 
+
+									{% else %}	
+
+									<div class="fila_1_v"> {{alumno.apellidop}} {{alumno.apellidom}} {{alumno.nombre}} </div> 
+
+									{% endif %}
+
+							{% endif %}
+
+							{% if date(alumnop[0].fechafinal) < date() %}
+
+									<div class="fila_1_n"> {{alumno.apellidop}} {{alumno.apellidom}} {{alumno.nombre}} </div> 
+							
+							{% endif %}
+
+				    	</div>
+
+				    	<div class="datos2">
+					    	<p>
+					    		Dni: {{alumno.dni}} <br>
+					    		Télefono Fijo: {{alumno.telefonof}} <br>
+					    		Télefono Celular: {{alumno.telefonoc}} <br>
+					    		Correo: {{alumno.email}} <br>
+					    		Cumpleaños: {{alumno.cumple|date("m/d/Y")}} <br>
+					    	</p> 
+				    	</div>
+				    </div>
+				</div>
+
+
+		    	<hr>
+
+		    	<div>
+		    		<div id="casistencia">
+		    			<div  class="datos">
+		    				Asistencias a la fecha
+		    			</div>
+		    			<div class="asistencia">
+		    				{{ alumnop[0].vecesasistencia}}
+		    			</div>
+
+		    		</div> 
+
+		    		<div id="casistencia2">
+		    			<div class="datos">
+		    				de un total de:
+		    			</div>
+		    			<div class="asistencia">
+		    				{{ alumnop[0].vecestotales}}
+		    			</div>
+
+		    		</div> 
+
+		    	</div>
+
+		    	
+
+		    	<h2 class="sub-header">Historial de Matrículas</h2>
+         		<div class="table-responsive">
+
+			    	<table class="table table-striped">
+
+		              	<thead>
+			                <tr>
+			                  <th>Fecha Inicio</th>
+			                  <th>Feha Final</th>
+			                  <th>Disciplina</th>
+			                  <th>Precio</th>
+			                  <th>Tipo Pago</th>
+			                </tr>
+		              	</thead>
+
+		              	<tbody>
+	                
+		              		{% for result in alumnop%}
+
+									<tr>
+
+										<td > {{result.fechainicio|date("d/m/Y")}}</td>
+
+										<td > {{result.fechafinal|date("d/m/Y")}}</td>
+										
+{% if result.disciplina == "1" or result.disciplina == "2" or result.disciplina == "3" or result.disciplina == "4" or result.disciplina == "5" %}
+
+	{% if result.disciplina == "1"%}  {% set disciplina= 'Muay thai' %} {%endif%}
+	{% if result.disciplina == "2"%}  {% set disciplina= 'Jiu Jitsu' %} {%endif%}
+	{% if result.disciplina == "3"%}  {% set disciplina= 'Judo' %} {%endif%}
+	{% if result.disciplina == "4"%}  {% set disciplina= 'Mma' %} {%endif%}
+	{% if result.disciplina == "5"%}  {% set disciplina= 'Box' %} {%endif%}
+																		
+{% else %}
+
+	{% set disciplina= result.disciplina %} 
+
+{%endif%}
+
+
+
+										{% if result.disciplina2 == "nulo"%}
+											
+											<td>{{ disciplina }} </td>
+									
+										{% else %}
+
+											{% if result.disciplina2 == ""%}
+												<td>{{ disciplina}} </td>
+											{% else %}
+
+												<td>{{ disciplina}} - {{ result.disciplina2}} </td>
+											{%endif%}
+
+										{%endif%}
+										
+										<td> {{result.precio}}</td>
+										{%if result.tipodepago=="1"%}
+										<td>Efectivo</td>
+										{%endif%}
+										{%if result.tipodepago=="2"%}
+										<td >Tarjeta</td>
+										{%endif%}
+
+									</tr>
+								{% endfor%}
+			                
+
+
+		              	</tbody>
+		            </table>
+
+		        </div>
+
+
+      		</div>
+    	</div> 
+
+
+
+
+    	<div class="col-md-3 nuevamatricula" id="rematricula">
+
+            {{ form_start(form) }}
+            {{ form_errors(form) }}
+         
+            <div class="nuevamatriculatext"> Nueva Matricula del Alumno: </div>
+
+            <div>
+            	</br>
+            	<div>
+                    <div class="col-sm-4"> 
+                    Inicio
+                    </div>
+                    <div class="col-sm-8"> 
+                    {{ form_errors(form.fecha_inicio) }}
+                    {{ form_widget(form.fecha_inicio, { 'attr': { 'class': 'form-group' , 'type':'datetime' } }) }}
+                    </div>
+                </div>
+                </br></br>
+
+                <div>
+                    <div class="col-sm-4"> 
+                    Inicio
+                    </div>
+                    <div class="col-sm-8"> 
+                    {{ form_errors(form.fecha_final) }}
+                    {{ form_widget(form.fecha_final, { 'attr': { 'class': 'form-group' , 'type':'datetime' } }) }}
+                    </div>
+                </div>
+
+                <div>
+	                <div class="col-sm-6">
+	                    {{ form_label(form.veces) }}
+	                </div>
+	                <div class="col-sm-6">
+	                    {{ form_errors(form.veces) }}
+	                    {{ form_widget(form.veces, { 'attr': {'class': 'form-control' }} ) }}
+	                </div>
+                </div>
+                </br></br></br></br>
+                <div>
+                	<div class="col-sm-6">
+                    Disciplina
+                    </div>
+                    <div class="col-sm-6">
+                    {{ form_widget(form.disciplina, { 'attr': {'class': 'form-control' }} ) }}
+                    </div>
+                </div>
+                </br> </br>
+                <div>
+                    <div class="col-sm-6">
+                    Disciplina Sec
+                    </div>
+                    <div class="col-sm-6">
+                    {{ form_widget(form.disciplina2, { 'attr': {'class': 'form-control' }} ) }}
+                    </div>
+                </div>
+                </br></br></br>
+
+                <div>
+                    {{ form_errors(form.tipodepago) }}
+                    {{ form_widget(form.tipodepago, { 'attr': {'class': 'form-control' }} ) }}
+                </div>
+				</br>                
+                <div>
+                    {{ form_errors(form.precio) }}
+                    {{ form_widget(form.precio, { 'attr': {'class': 'form-control' , 'placeholder' :'S/. Monto en soles'   } }) }}
+                </div>
+                </br>
+                <div class="col-sm-5">
+                 {{ form_widget(form.matricular, {'attr' : {'class':'btn btn-primary' }}  )  }}
+                </div> 
+
+                <div class="col-sm-5 btn btn-primary rojop" onclick="mostrar2()">
+                 Cancelar
+                </div>  
+
+            </div>
+                     
+            {{ form_end(form) }}
+
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>	    
+
+ </div> 
+  
+  
+
+</body>
+</html>

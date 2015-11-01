@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+
+    <title>Peru Fight academy </title>
+
+    <link href = "{{asset('css/bootstrap.css')}}" rel="stylesheet" media="screen">
+    <link href = "{{asset('css/lomio.css')}}" rel="stylesheet" type="text/css" >
+    <link href = "{{asset('css/dashboard.css')}}" rel="stylesheet" type="text/css" >
+
+    <script src = "{{asset('http://code.jquery.com/jquery.js')}}"></script>
+    <script src = "{{asset('js/bootstrap.min.js')}}"></script>
+
+    <Link  href = "{{asset('css/estilos.css')}}" rel = "stylesheet" type = "text/css"  />
+
+</head>
+
+<body>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+          <div class="container-fluid">
+            <a href="http://www.incuba.pe"><img src="{{asset('imagenes/logo4.png')}}" class="logo"></a>
+            <div class="navbar-header">
+              <a class="navbar-brand" href="{{ path('logout', { 'slug': '' } )}}" >Cerrar Sesión</a>
+            </div>
+            
+          </div>
+    </nav>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+          <ul class="nav nav-sidebar">
+            
+            
+            <li class="active"><a href="{{ path('ff_demo_homepage', { 'slug': '' } )}}">Inicio <span class="sr-only">(current)</span></a></li>
+            
+            <li><a href= "{{ path('Formulario', { 'slug': '' } )}}"  >Matricular</a></li>
+
+            <li><a href="{{ path('Vencer', { 'slug': '' } )}}">Vencimientos</a></li>
+      
+            <li><a href="#">Reportes</a></li>
+
+          </ul>
+        
+        </div>
+
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+
+            {{ form_start(form) }}
+   
+            {{ form_end(form) }}
+
+
+
+          {% set matHombres = 0 %}
+          {% set matMujeres = 0 %}
+          {% set matReno = 0 %}
+          {% set montoHombres = 0 %}
+          {% set montoMujeres  = 0 %}
+          {% set montoReno = 0 %}
+          {% set ingreso1 = 0 %}
+
+          {% for muay1 in muay %}
+                {% if muay1.fechainicio >= fechai  %}
+                    {% if muay1.fechainicio <= fechaf  %}
+
+
+                            {% if muay1.sexo == 1  %}
+
+                                  {% set matMujeres = 1 + matMujeres %}
+                                  {% set montoMujeres = muay1.precio + montoMujeres %}
+                                  {% set ingreso1 = muay1.precio + ingreso1 %}  
+
+                            {%endif%}
+
+                            {% if muay1.sexo == 2  %}
+
+                                  {% set matHombres = 1 + matHombres %}
+                                  {% set montoHombres = muay1.precio + montoHombres %}
+                                  {% set ingreso1 = muay1.precio + ingreso1 %}  
+
+                            {%endif%}     
+
+                            {% if muay1.sexo == 3  %}
+
+                                  {% set matReno = 1 + matReno%}
+                                  {% set montoReno = muay1.precio + montoReno %}
+                                  {% set ingreso1 = muay1.precio + ingreso1 %}  
+
+                            {%endif%}  
+
+
+                    {%endif%}
+                {%endif%}
+          {% endfor%}
+
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                      <th> </th>
+                      <th>Nuev. Matr. V.</th>
+                      <th>Nuev. Matr. M.</th>
+                      <th>Matr. Renovadas</th>
+                      <th>Monto Matr. V.</th>
+                      <th>Monto Matr. M.</th>
+                      <th>Monto Renovadas</th>
+                      <th>Monto Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                      <th> Muay thai</th>
+                      <th class="asul">{{matHombres}}</th>
+                      <th class="asul">{{matMujeres}}</th>
+                      <th class="asul">{{matReno}}</th>
+                      <th class="asul">S/.{{montoHombres}}</th>
+                      <th class="asul">S/.{{montoMujeres}}</th>
+                      <th class="asul">S/.{{montoReno}}</th>
+                      <th class="asul">S/.{{ingreso1}}</th>
+                    </tr>
+                
+{# **************************************************************************************** #}
+
+          {% set matHombres = 0 %}
+          {% set matMujeres = 0 %}
+          {% set matReno = 0 %}
+          {% set montoHombres = 0 %}
+          {% set montoMujeres  = 0 %}
+          {% set montoReno = 0 %}
+          {% set ingreso2 = 0 %}
+
+          {% for jiu1 in boxand %}
+                {% if jiu1.fechainicio >= fechai  %}
+                    {% if jiu1.fechainicio <= fechaf  %}
+
+
+                            {% if jiu1.sexo == 1  %}
+
+                                  {% set matMujeres = 1 + matMujeres %}
+                                  {% set montoMujeres = jiu1.precio + montoMujeres %}
+                                  {% set ingreso2 = jiu1.precio + ingreso2 %}  
+
+                            {%endif%}
+
+                            {% if jiu1.sexo == 2  %}
+
+                                  {% set matHombres = 1 + matHombres %}
+                                  {% set montoHombres = jiu1.precio + montoHombres %}
+                                  {% set ingreso2 = jiu1.precio + ingreso2 %}  
+
+                            {%endif%}     
+
+                            {% if jiu1.sexo == 3  %}
+
+                                  {% set matReno = 1 + matReno%}
+                                  {% set montoReno = jiu1.precio + montoReno %}
+                                  {% set ingreso2 = jiu1.precio + ingreso2 %}  
+
+                            {%endif%}  
+
+
+                    {%endif%}
+                {%endif%}
+          {% endfor%}
+
+
+                    <tr>
+                      <th> Box and fitness</th>
+                      <th class="asul">{{matHombres}}</th>
+                      <th class="asul">{{matMujeres}}</th>
+                      <th class="asul">{{matReno}}</th>
+                      <th class="asul">S/.{{montoHombres}}</th>
+                      <th class="asul">S/.{{montoMujeres}}</th>
+                      <th class="asul">S/.{{montoReno}}</th>
+                      <th class="asul">S/.{{ingreso2}}</th>
+                    </tr>
+
+
+{# **************************************************************************************** #}
+
+          {% set matHombres = 0 %}
+          {% set matMujeres = 0 %}
+          {% set matReno = 0 %}
+          {% set montoHombres = 0 %}
+          {% set montoMujeres  = 0 %}
+          {% set montoReno = 0 %}
+          {% set ingreso3 = 0 %}
+
+          {% for box1 in box %}
+                {% if box1.fechainicio >= fechai  %}
+                    {% if box1.fechainicio <= fechaf  %}
+
+
+                            {% if box1.sexo == 1  %}
+
+                                  {% set matMujeres = 1 + matMujeres %}
+                                  {% set montoMujeres = box1.precio + montoMujeres %}
+                                  {% set ingreso3 = box1.precio + ingreso3 %}  
+
+                            {%endif%}
+
+                            {% if box1.sexo == 2  %}
+
+                                  {% set matHombres = 1 + matHombres %}
+                                  {% set montoHombres = box1.precio + montoHombres %}
+                                  {% set ingreso3 = box1.precio + ingreso3 %}  
+
+                            {%endif%}     
+
+                            {% if box1.sexo == 3  %}
+
+                                  {% set matReno = 1 + matReno%}
+                                  {% set montoReno = box1.precio + montoReno %}
+                                  {% set ingreso3 = box1.precio + ingreso3 %}  
+
+                            {%endif%}  
+
+
+                    {%endif%}
+                {%endif%}
+          {% endfor%}
+
+                    <tr>
+                      <th> BoX</th>
+                      <th class="asul">{{matHombres}}</th>
+                      <th class="asul">{{matMujeres}}</th>
+                      <th class="asul">{{matReno}}</th>
+                      <th class="asul">S/.{{montoHombres}}</th>
+                      <th class="asul">S/.{{montoMujeres}}</th>
+                      <th class="asul">S/.{{montoReno}}</th>
+                      <th class="asul">S/.{{ingreso3}}</th>
+                    </tr>
+
+{# **************************************************************************************** #}
+
+          {% set matHombres = 0 %}
+          {% set matMujeres = 0 %}
+          {% set matReno = 0 %}
+          {% set montoHombres = 0 %}
+          {% set montoMujeres  = 0 %}
+          {% set montoReno = 0 %}
+          {% set ingreso4 = 0 %}
+
+          {% for mma1 in mma %}
+                {% if mma1.fechainicio >= fechai  %}
+                    {% if mma1.fechainicio <= fechaf  %}
+
+
+                            {% if mma1.sexo == 1  %}
+
+                                  {% set matMujeres = 1 + matMujeres %}
+                                  {% set montoMujeres = mma1.precio + montoMujeres %}
+                                  {% set ingreso4 = mma1.precio + ingreso4 %}  
+
+                            {%endif%}
+
+                            {% if mma1.sexo == 2  %}
+
+                                  {% set matHombres = 1 + matHombres %}
+                                  {% set montoHombres = mma1.precio + montoHombres %}
+                                  {% set ingreso4 = mma1.precio + ingreso4 %}  
+
+                            {%endif%}     
+
+                            {% if mma1.sexo == 3  %}
+
+                                  {% set matReno = 1 + matReno%}
+                                  {% set montoReno = mma1.precio + montoReno %}
+                                  {% set ingreso4 = mma1.precio + ingreso4 %}  
+
+                            {%endif%}  
+
+
+                    {%endif%}
+                {%endif%}
+          {% endfor%}
+
+
+                    <tr>
+                      <th> Mma</th>
+                      <th class="asul">{{matHombres}}</th>
+                      <th class="asul">{{matMujeres}}</th>
+                      <th class="asul">{{matReno}}</th>
+                      <th class="asul">S/.{{montoHombres}}</th>
+                      <th class="asul">S/.{{montoMujeres}}</th>
+                      <th class="asul">S/.{{montoReno}}</th>
+                      <th class="asul">S/.{{ingreso4}}</th>
+                    </tr>
+
+{# **************************************************************************************** #}
+
+          {% set matHombres = 0 %}
+          {% set matMujeres = 0 %}
+          {% set matReno = 0 %}
+          {% set montoHombres = 0 %}
+          {% set montoMujeres  = 0 %}
+          {% set montoReno = 0 %}
+          {% set ingreso5 = 0 %}
+
+          {% for judo1 in judo %}
+                {% if judo1.fechainicio >= fechai  %}
+                    {% if judo1.fechainicio <= fechaf  %}
+
+
+                            {% if judo1.sexo == 1  %}
+
+                                  {% set matMujeres = 1 + matMujeres %}
+                                  {% set montoMujeres = judo1.precio + montoMujeres %}
+                                  {% set ingreso5 = judo1.precio + ingreso5 %}  
+
+                            {%endif%}
+
+                            {% if judo1.sexo == 2  %}
+
+                                  {% set matHombres = 1 + matHombres %}
+                                  {% set montoHombres = judo1.precio + montoHombres %}
+                                  {% set ingreso4 = judo1.precio + ingreso4 %}  
+
+                            {%endif%}     
+
+                            {% if judo1.sexo == 3  %}
+
+                                  {% set matReno = 1 + matReno%}
+                                  {% set montoReno = judo1.precio + montoReno %}
+                                  {% set ingreso4 = judo1.precio + ingreso4 %}  
+
+                            {%endif%}  
+
+
+                    {%endif%}
+                {%endif%}
+          {% endfor%}
+
+
+                    <tr>
+                      <th> Judo</th>
+                      <th class="asul">{{matHombres}}</th>
+                      <th class="asul">{{matMujeres}}</th>
+                      <th class="asul">{{matReno}}</th>
+                      <th class="asul">S/.{{montoHombres}}</th>
+                      <th class="asul">S/.{{montoMujeres}}</th>
+                      <th class="asul">S/.{{montoReno}}</th>
+                      <th class="asul">S/.{{ingreso5}}</th>
+                    </tr>
+
+{# **************************************************************************************** #}
+
+
+
+
+
+
+{# **************************************************************************************** #}
+
+
+
+
+
+
+
+          {% set ingreso6 = 0 %}
+          {% set ingreso6 = ingreso1 + ingreso2 + ingreso3 + ingreso4 + ingreso5%}
+
+                    <tr>
+                      <th class="asul"> </th>
+                      <th class="asul"></th>
+                      <th class="asul"></th>
+                      <th class="asul"></th>
+                      <th class="asul"></th>
+                      <th class="asul"></th>
+                      <th class="asul"></th>
+                      <th class="asul"> S/.{{ingreso6}}</th>
+                    </tr>
+
+                </tbody>
+            </table>
+
+        </div>
+        
+    </div>
+</div>
+
+</body>
+
+
+</html>

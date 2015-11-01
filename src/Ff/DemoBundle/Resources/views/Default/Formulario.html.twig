@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+
+    <title>Fight and Fitness</title>
+
+    <link href = "{{asset('css/bootstrap.css')}}" rel="stylesheet" media="screen">
+    <link href = "{{asset('css/lomio.css')}}" rel="stylesheet" type="text/css" >
+    <link href = "{{asset('css/dashboard.css')}}" rel="stylesheet" type="text/css" >
+
+    <script src = "{{asset('http://code.jquery.com/jquery.js')}}"></script>
+    <script src = "{{asset('js/bootstrap.min.js')}}"></script>
+
+    <Link  href = "{{asset('css/estilos.css')}}" rel = "stylesheet" type = "text/css"  />
+
+</head>
+
+<body>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+          <div class="container-fluid">
+            <a href="http://www.incuba.pe"><img src="{{asset('imagenes/logo4.png')}}" class="logo"></a>
+            <div class="navbar-header">
+              <a class="navbar-brand" href="{{ path('logout', { 'slug': '' } )}}" >Cerrar Sesión</a>
+            </div>
+            
+          </div>
+    </nav>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+          <ul class="nav nav-sidebar">
+            
+            <li><a href="{{ path('ff_demo_homepage', { 'slug': '' } )}}">Inicio <span class="sr-only">(current)</span></a></li>
+            
+            <li class="active"><a href="#">Matricular</a></li>
+
+            <li><a href="{{ path('Vencer', { 'slug': '' } )}}">Vencimientos</a></li>
+            <li><a href="{{ path('estadistica', { 'slug': '' } )}}">Reportes</a></li>
+          </ul>
+        
+        </div>
+        
+        {{ form_start(form) }}
+
+        <div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-2 main">
+                <h2 class="sub-header">Matrícula de Alumno</h2>
+                 
+                <div>
+                    {{ form_errors(form.file) }}
+                    {{ form_widget(form.file, { 'attr': {'class': 'form-control' }} ) }}
+                </div>
+
+                 <div>
+                    {{ form_errors(form.apellidop) }}
+                    {{ form_widget(form.apellidop, { 'attr': {'class': 'form-control' , 'placeholder' :'Apellido Paterno'   } }) }}
+                </div>
+
+                <div>
+                    {{ form_errors(form.apellidom) }}
+                    {{ form_widget(form.apellidom, { 'attr': {'class': 'form-control' , 'placeholder' :'Apellido Materno'   } }) }}
+                </div>
+
+                <div>
+                    {{ form_errors(form.nombre) }}
+                    {{ form_widget(form.nombre, { 'attr': {'class': 'form-control' , 'placeholder' :'Nombres Completos'   } }) }}
+                </div>
+
+                <div>
+                    {{ form_errors(form.email) }}
+                    {{ form_widget(form.email, { 'attr': {'class': 'form-control' , 'placeholder' :'Correo electronico'   } }) }}
+                </div>
+
+                <div>
+                    {{ form_errors(form.dni) }}
+                    {{ form_widget(form.dni, { 'attr': {'class': 'form-control' , 'placeholder' :'Dni'   } }) }}
+                </div>
+
+                 <div>
+                    {{ form_errors(form.telefonoc) }}
+                    {{ form_widget(form.telefonoc, { 'attr': {'class': 'form-control' , 'placeholder' :'Telefono Celular'   } }) }}
+                </div>
+                 <div>
+                    {{ form_errors(form.telefonof) }}
+                    {{ form_widget(form.telefonof, { 'attr': {'class': 'form-control' , 'placeholder' :'Telefono Fijo'   } }) }}
+                </div>
+
+
+                <div>
+                    {{ form_errors(form.sexo) }}
+                    {{ form_widget(form.sexo, { 'attr': {'class': 'form-control' }} ) }}
+                </div>
+
+                <div>
+                    <div class=""> Cumpleaños </div>
+                    {{ form_errors(form.cumple) }}
+                    {{ form_widget(form.cumple, { 'attr': { 'class': 'form-group' , 'type':'datetime' } }) }}
+                </div>
+
+                
+        </div>
+
+        <div class="col-sm-6 col-md-4  main"> 
+                </br></br>
+
+                <div class=""> Disciplina </div>
+                
+                <div>
+                    <div class="col-md-6">
+                        Disciplina Principal :
+                    </div>
+
+                    <div class="col-md-6">
+                        {{ form_errors(form.disciplina) }}
+                        {{ form_widget(form.disciplina, { 'attr': {'class': 'form-control' }} ) }}
+                    </div>
+                </div>
+                    
+                <div>
+                    <div class="col-md-6">
+                        Disciplina Secund. :
+                    </div>
+
+                    <div class="col-md-6">
+                        {{ form_errors(form.disciplina2) }}
+                        {{ form_widget(form.disciplina2, { 'attr': {'class': 'form-control' }} ) }}
+                    </div>
+                </div>
+
+                <div>
+                    <div class=""> Inicio </div>
+                    {{ form_errors(form.fecha_inicio) }}
+                    {{ form_widget(form.fecha_inicio, { 'attr': { 'class': 'form-group' , 'type':'datetime' } }) }}
+                </div>
+
+                <div>
+                    <div class=""> Vencimiento </div>
+                    {{ form_errors(form.fecha_final) }}
+                    {{ form_widget(form.fecha_final, { 'attr': { 'class': 'form-group' , 'type':'datetime' } }) }}
+                </div>
+
+                <div>
+                    {{ form_errors(form.tipodepago) }}
+                    {{ form_widget(form.tipodepago, { 'attr': {'class': 'form-control' }} ) }}
+                </div>
+
+                <div>
+                    {{ form_errors(form.veces) }}
+                    {{ form_widget(form.veces, { 'attr': {'class': 'form-control' }} ) }}
+                </div>
+
+                <div>
+                    {{ form_errors(form.precio) }}
+                    {{ form_widget(form.precio, { 'attr': {'class': 'form-control' , 'placeholder' :'S/. Monto en soles'   } }) }}
+                </div>
+
+                <div>
+                 {{ form_widget(form.matricular, {'attr' : {'class':'btn btn-primary' }}  )  }}
+                </div>
+                         
+            
+       
+
+        </div>
+        {{ form_end(form) }}
+
+    </div>
+</div>
+
+</body>
+
+
+</html>

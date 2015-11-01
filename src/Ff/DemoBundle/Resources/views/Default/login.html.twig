@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+
+    <head>
+
+        <title>Fight and Fitness</title>
+
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link href = "{{asset('css/bootstrap.min.css')}}" rel="stylesheet" media="screen">
+	    <link href = "{{asset('css/lomio.css')}}" rel="stylesheet" type="text/css" >	
+	    <script src = "{{asset('http://code.jquery.com/jquery.js')}}"></script>
+	    <script src = "{{asset('js/bootstrap.min.js')}}"></script>
+ 
+    </head>
+
+
+
+<body>
+
+     <div class="container">
+         <div class="user">
+
+         	<a href="http://www.incuba.pe"><img src="{{asset('imagenes/logo3.png')}}" class="logo2"></a>
+
+			{% if error %}
+			    <div>{{ error.message }}</div>
+			{% endif %}
+			 
+			<form action="{{ path('login_check') }}" method="post" class="form-signin">
+				<h2 class="bienvenida">Sistema de Administración</h2>
+
+
+                <input type="text" id="inputEmail" class="form-control" placeholder="Usuario" required="" autofocus="" value="{{ last_username }}" name="_username">
+
+
+                <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="" name="_password">
+                
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Entar</button>
+
+
+			</form>
+
+			<p> </br>© Copyright 2015 - Desarrollado por Incuba - Todos los derechos reservados - Soporte : RPM 968525633</p>
+
+		</div>
+	</div>		
+
+</body>
+</html>
